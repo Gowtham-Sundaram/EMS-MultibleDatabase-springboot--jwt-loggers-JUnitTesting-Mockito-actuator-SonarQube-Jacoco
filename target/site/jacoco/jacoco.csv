@@ -1,0 +1,9 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+employeemanagementsystem,com.accent.employeemanagementsystem.deptentitydao,DepartmentEntity,4,22,0,0,2,10,1,5,1,5
+employeemanagementsystem,com.accent.employeemanagementsystem.dbconfig,EmpDBConfig,0,23,0,0,0,5,0,4,0,4
+employeemanagementsystem,com.accent.employeemanagementsystem.dbconfig,DeptDBConfig,0,23,0,0,0,5,0,4,0,4
+employeemanagementsystem,com.accent.employeemanagementsystem.dbconfig,JWTsecuserDBConfig,0,23,0,0,0,5,0,4,0,4
+employeemanagementsystem,com.accent.employeemanagementsystem.beandto,Department,0,16,0,0,0,8,0,4,0,4
+employeemanagementsystem,com.accent.employeemanagementsystem.beandto,Employee,0,46,0,0,0,20,0,10,0,10
+employeemanagementsystem,com.accent.employeemanagementsystem.employemanagementeservice,EmployeeManagementService,138,354,8,8,36,73,8,12,0,12
+employeemanagementsystem,com.accent.employeemanagementsystem,EmployeemanagementsystemApplication,5,46,0,0,2,5,1,2,1,2

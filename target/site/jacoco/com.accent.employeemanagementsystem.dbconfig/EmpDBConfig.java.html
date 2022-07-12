@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmpDBConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">employeemanagementsystem</a> &gt; <a href="index.source.html" class="el_package">com.accent.employeemanagementsystem.dbconfig</a> &gt; <span class="el_source">EmpDBConfig.java</span></div><h1>EmpDBConfig.java</h1><pre class="source lang-java linenums">package com.accent.employeemanagementsystem.dbconfig;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import javax.persistence.EntityManagerFactory;
+import javax.sql.DataSource;
+
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(entityManagerFactoryRef = &quot;primaryEntityManagerFactory&quot;, transactionManagerRef = &quot;primaryTransactionManager&quot;, basePackages = {
+		&quot;com.accent.employeemanagementsystem.employeerepository&quot; })
+<span class="fc" id="L23">public class EmpDBConfig {</span>
+	@Bean(name = &quot;primaryDataSource&quot;)
+	@Primary
+	@ConfigurationProperties(prefix = &quot;spring.datasource&quot;)
+	public DataSource primaryDataSource() {
+<span class="fc" id="L28">		return DataSourceBuilder.create().build();</span>
+	}
+
+	@Primary
+	@Bean(name = &quot;primaryEntityManagerFactory&quot;)
+	public LocalContainerEntityManagerFactoryBean primaryEntityManagerFactory(EntityManagerFactoryBuilder builder,
+			@Qualifier(&quot;primaryDataSource&quot;) DataSource primaryDataSource) {
+<span class="fc" id="L35">		return builder.dataSource(primaryDataSource).packages(&quot;com.accent.employeemanagementsystem.empentitydao&quot;)</span>
+<span class="fc" id="L36">				.build();</span>
+	}
+
+	@Primary
+	@Bean(name = &quot;primaryTransactionManager&quot;)
+	public PlatformTransactionManager primaryTransactionManager(
+			@Qualifier(&quot;primaryEntityManagerFactory&quot;) EntityManagerFactory primaryEntityManagerFactory) {
+<span class="fc" id="L43">		return new JpaTransactionManager(primaryEntityManagerFactory);</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
